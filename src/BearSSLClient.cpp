@@ -554,7 +554,7 @@ int BearSSLClient::clientRead(void *ctx, unsigned char *buf, size_t len)
 
   int result = c->read(buf, len);
   if (result == -1) {
-    return 0;
+    return -1; // FIX to avoid infinite loop when connection happens and server doesn't respond with handshake
   }
 
 #ifdef DEBUGSERIAL
